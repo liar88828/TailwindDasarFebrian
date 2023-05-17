@@ -1,0 +1,153 @@
+---
+import Icon from 'astro-icon'
+
+const Biodata = {
+foto: 'https://picsum.photos/300/300?random=1',
+nama: 'Febrian Alif Hermawan',
+alamat: 'Jl. Jetis Kalisegoro Rt1/Rw1',
+sosmeds: [
+{
+sosmed: 'Facebook',
+link: 'https',
+icon: 'ri:facebook-box-line',
+color: 'text-blue-500',
+},
+{
+sosmed: 'Whatsapp',
+link: 'https',
+icon: 'ic:baseline-whatsapp',
+color: 'text-green-500',
+},
+{
+sosmed: 'Instagram ',
+link: 'https',
+icon: 'mdi:instagram',
+color: 'text-purple-500',
+},
+],
+}
+
+type TIkiGambar = {
+judul: string
+gambar: string
+keterangan: string
+warna: string
+}
+
+const IkiGambar: TIkiGambar[] = [
+{
+judul: 'iki gambar1',
+gambar: 'https://picsum.photos/300/300?random=2',
+keterangan:
+'widely lonely near basket improve needed headed asleep visit dropped corner easy rough further lion cabin political
+wise correctly grandfather east bring battle desert',
+warna: 'bg-green-200',
+},
+{
+judul: 'iki gambar2',
+gambar: 'https://picsum.photos/300/300?random=3',
+keterangan:
+'talk vast policeman distance donkey carbon paragraph prize desert halfway life shout becoming yesterday beyond surface
+clear massage girl bag lose forward direct somebody',
+warna: 'bg-purple-200',
+},
+{
+judul: 'iki gambar3',
+gambar: 'https://picsum.photos/300/300?random=4',
+keterangan:
+'hospital central did take canal still pig rough chest food union crowd has definition position planet flat common
+rabbit mixture wheel property measure watch widely lonely near basket improve needed headed asleep visit dropped corner
+easy rough further lion cabin political wise correctly grandfather east bring battle desert',
+warna: 'bg-pink-200',
+},
+]
+---
+
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='UTF-8' />
+  <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>Tugas</title>
+</head>
+
+<body>
+  <!-- navbar -->
+  <section class='text-center'>BIODATA KU</section>
+
+  <!--biodata  -->
+  <section class='mt-10 flex flex-col sm:flex-row gap-3 justify-center items-center'>
+    <div class='p-5 bg-blue-200 rounded-2xl flex items-center justify-center w-9/12 md:w-96  shadow-md'>
+      <img class='rounded-2xl w-full' src='/public/images/unnamed.jpg' alt={Biodata.nama} />
+    </div>
+
+    <div class='p-5 rounded-2xl bg-yellow-200 mt-5 sm:mt-0  shadow-md'>
+      <!-- <h1 >Data Diri</h1> -->
+      <h1 class='text-2xl'>Nama : {Biodata.nama}</h1>
+      <p class='text-xl'>Alamat : {Biodata.alamat}</p>
+      <h2 class='text-xl'>Sosmed</h2>
+      <table table-auto>
+        <thead>
+          <tr>
+            <th>Met sos</th>
+            <th></th>
+            <th>Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+          Biodata.sosmeds.map(
+          (data: {
+          sosmed: string
+          link: string
+          icon: string
+          color: string
+          }) => (
+          <tr>
+            <td>{data.sosmed} </td>
+            <td>
+              <Icon class={data.color} style='fill:red' name={data.icon} width='20' height='20' />
+            </td>
+            <td>
+              <button class='p-1 bg-blue-400 rounded-full w-20 hover:bg-red-400 cursor-pointer'>
+                <a href={data.link}> {data.sosmed}</a>
+              </button>
+            </td>
+          </tr>
+          ),
+          )
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class='mt-5 sm:mt-10 flex justify-center items-center'>
+    <div class='p-5 flex flex-col sm:flex-row gap-4 flex-wrap'>
+      {
+      IkiGambar.map((e: TIkiGambar) => {
+      // console.log(e.warna)
+      return (
+      <div class={`mt-5 ml-9 sm:ml-5 sm:w-5/12 w-10/12 md:w-96 rounded-2xl ${e.warna} p-5 flex items-center flex-col
+        gap-5 shadow-md`}>
+        <img class='rounded-md w-3/4' src={e.gambar} alt={e.judul} />
+        <p class='bg-slate-200 p-2 rounded-md'>{e.keterangan}</p>
+      </div>
+      )
+      })
+      }
+    </div>
+  </section>
+</body>
+
+</html>
+<style lang='scss'>
+  body {
+    background-image: linear-gradient(120deg,
+        lightblue,
+        rgb(255, 157, 248),
+        lightblue);
+  }
+</style>
